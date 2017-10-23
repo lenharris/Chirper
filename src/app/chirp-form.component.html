@@ -1,0 +1,38 @@
+<div class="container">
+    <div [hidden]="submitted">
+    <h1>Chirper</h1>
+    <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+
+        <div class="form-group">
+          <label for="chirp">Chirp</label>
+          <!-- <label for="maxlength">Set a maxlength: </label>
+          <input type="number" ng-model="maxlength" id="maxlength"/> -->
+
+
+          <input type="text" class="form-control" id="chirp"
+                 required
+                 [(ngModel)]="model.chirp" name="chirp" #name="ngModel" ng-maxlength="140">
+                 <div [hidden]="chirp.valid || chirp.pristine"
+                 class="alert alert-danger">
+              Chirp is required
+            </div>
+        </div>
+ 
+        <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Submit</button>
+        
+      <button type="button" class="btn btn-default" (click)="newHero(); heroForm.reset()">New Hero</button>
+
+    </form>
+</div>
+
+<div [hidden]="!submitted">
+        <h2>You submitted the following:</h2>
+        <div class="row">
+          <div class="col-xs-3">Name</div>
+          <div class="col-xs-9  pull-left">{{ model.name }}</div>
+        </div>
+        <br>
+        <button class="btn btn-primary" (click)="submitted=false">Edit</button>
+      </div>
+</div>
+
